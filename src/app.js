@@ -1,8 +1,15 @@
 const express = require("express")
 const info = require("./Schema/Schema")
+const cookieParser = require("cookie-parser")
+const authRouter = require("./routes/auth.routes")
+const connectDB = require("./Database/db")
 
+
+connectDB()
 const app = express()
 app.use(express.json())
+app.use('/api/auth', authRouter)
+
 
 //CREATE api____________________
 app.post("/create", async (req,res) => {
